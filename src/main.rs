@@ -1,3 +1,6 @@
+mod draped_line;
+mod draped_lines_node;
+
 use bevy::{
     asset::LoadState,
     log,
@@ -10,10 +13,18 @@ use bevy::{
         texture::AddressMode,
     },
 };
+use draped_lines_node::DrapedLinesNode;
+use node::DRAPED_LINES_NODE;
 
+use crate::draped_line::{DrapedLine, DrapedLineBundle};
+
+mod uniform {
+    pub const DRAPED_LINES: &str = "DrapedLines";
+}
 // Names for new RenderGraph Nodes
 mod node {
     pub const TERRAIN_MATERIAL_NODE: &str = "TerrainMaterial_node";
+    pub const DRAPED_LINES_NODE: &str = "DrapedLines_node";
 }
 
 // We need an AppState to track loading
@@ -110,6 +121,11 @@ fn setup_render_graph(mut render_graph: ResMut<RenderGraph>) {
     render_graph
         .add_node_edge(node::TERRAIN_MATERIAL_NODE, base::node::MAIN_PASS)
         .unwrap();
+
+    render_graph.add_system_node(DRAPED_LINES_NODE, DrapedLinesNode::new(50));
+    render_graph
+        .add_node_edge(node::DRAPED_LINES_NODE, base::node::MAIN_PASS)
+        .unwrap();
 }
 
 fn setup(
@@ -153,6 +169,50 @@ fn setup(
             scale: 1.0 / 6.0,
             offset: 0.0,
         });
+
+    commands.spawn_bundle(DrapedLineBundle {
+        draped_line: DrapedLine {
+            point0: Vec3::new(200.0, 0.0, 100.0),
+            point1: Vec3::new(200.0, 0.0, -100.0),
+            width: 1.0,
+            color: Color::RED,
+            plane_dir: -Vec3::Y,
+        },
+        ..Default::default()
+    });
+
+    commands.spawn_bundle(DrapedLineBundle {
+        draped_line: DrapedLine {
+            point0: Vec3::new(-200.0, 0.0, -100.0),
+            point1: Vec3::new(200.0, 0.0, -100.0),
+            width: 1.0,
+            color: Color::RED,
+            plane_dir: -Vec3::Y,
+        },
+        ..Default::default()
+    });
+
+    commands.spawn_bundle(DrapedLineBundle {
+        draped_line: DrapedLine {
+            point0: Vec3::new(-200.0, 0.0, 100.0),
+            point1: Vec3::new(200.0, 0.0, 100.0),
+            width: 1.0,
+            color: Color::RED,
+            plane_dir: -Vec3::Y,
+        },
+        ..Default::default()
+    });
+
+    commands.spawn_bundle(DrapedLineBundle {
+        draped_line: DrapedLine {
+            point0: Vec3::new(-200.0, 0.0, 100.0),
+            point1: Vec3::new(-200.0, 0.0, -100.0),
+            width: 1.0,
+            color: Color::RED,
+            plane_dir: -Vec3::Y,
+        },
+        ..Default::default()
+    });
 
     // light
     commands.spawn_bundle(PointLightBundle {

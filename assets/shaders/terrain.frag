@@ -36,7 +36,9 @@
 
 // reflects the constants defined bevy_pbr/src/render_graph/mod.rs
 const int MAX_POINT_LIGHTS = 10;
+const int MAX_DRAPED_LINES = 50;
 const int MAX_DIRECTIONAL_LIGHTS = 1;
+const float MAX_FLOAT = 3.402823466e+38;
 
 struct PointLight {
     vec4 pos;
@@ -47,6 +49,14 @@ struct PointLight {
 struct DirectionalLight {
     vec4 direction;
     vec4 color;
+};
+
+struct DrapedLine {
+    vec4 point0;
+    vec4 point1;
+    vec4 width;
+    vec4 color;
+    vec4 plane_dir;
 };
 
 layout(location = 0) in vec3 v_WorldPosition;
@@ -71,6 +81,11 @@ layout(std140, set = 1, binding = 0) uniform Lights {
     uvec4 NumLights; // x = point lights, y = directional lights
     PointLight PointLights[MAX_POINT_LIGHTS];
     DirectionalLight DirectionalLights[MAX_DIRECTIONAL_LIGHTS];
+};
+
+layout(std140, set = 1, binding = 1) uniform DrapedLines {
+    uvec4 NumDrapedLines;
+    DrapedLine DrapedLineArray[MAX_DRAPED_LINES];
 };
 
 layout(set = 3, binding = 0) uniform StandardMaterial_base_color {
@@ -357,25 +372,18 @@ void main() {
                             v_Uv);
 #endif
 
-    uint num_line_segments = 4;
-    vec3[] line_segments = {
-        vec3(200.0, 0.0, 100.0),
-        vec3(-200.0, 0.0, 100.0),
-        vec3(-200.0, 0.0, -100.0),
-        vec3(200.0, 0.0, -100.0),
-        vec3(200.0, 0.0, 100.0),
-    };
-
-    float line_width = 1;
-    float line_feather = line_width * 0.3;
-    vec4 line_color = vec4(1.0, 0.0, 0.0, 1.0);
-    vec3 plane_dir = vec3(0.0, -1.0, 0.0);
-
-    float distance_from_plane = 3.402823466e+38;
+    float distance_from_plane = MAX_FLOAT;
     int closest = 0;
-    for (int i = 0; i < num_line_segments; i++) {
-        vec3 segment_p0 = line_segments[i];
-        vec3 segment_p1 = line_segments[i + 1];
+    for (int i = 0; i < NumDrapedLines.x; i++) {
+        DrapedLine draped_line = DrapedLineArray[i];
+
+        float line_width = draped_line.width.x;
+        float line_feather = line_width * 0.3;
+        vec4 line_color = draped_line.color;
+        vec3 plane_dir = draped_line.plane_dir.xyz;
+
+        vec3 segment_p0 = draped_line.point0.xyz;
+        vec3 segment_p1 = draped_line.point1.xyz;
 
         vec3 plane_norm = normalize(cross(segment_p1 - segment_p0, plane_dir));
         float new_distance_from_plane = abs(dot(v_WorldPosition, plane_norm) - dot(segment_p0, plane_norm));
@@ -385,8 +393,14 @@ void main() {
         }
     }
 
-    vec3 segment_p0 = line_segments[closest];
-    vec3 segment_p1 = line_segments[closest + 1];
+    DrapedLine draped_line = DrapedLineArray[closest];
+    vec3 segment_p0 = draped_line.point0.xyz;
+    vec3 segment_p1 = draped_line.point1.xyz;
+    vec3 plane_dir = draped_line.plane_dir.xyz;
+    float line_width = draped_line.width.x;
+    float line_feather = line_width * 0.3;
+    vec4 line_color = draped_line.color;
+
     vec3 plane_norm = normalize(cross(segment_p1 - segment_p0, plane_dir));
 
     vec3 perpendicular_component = (v_WorldPosition - segment_p0) - dot(v_WorldPosition - segment_p0, plane_dir) * plane_dir;
