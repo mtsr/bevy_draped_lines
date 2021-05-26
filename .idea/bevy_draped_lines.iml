@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="Go" enabled="true" />
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/debug/build/ahash-671dfaadea078587/out" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/debug/build/anyhow-a31df90de0d0a86f/out" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/debug/build/bevy-glsl-to-spirv-11a9eb1723487f37/out" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/debug/build/bitflags-e1497d89b9bb929b/out" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/debug/build/cpal-705cf34643b8fc6e/out" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/debug/build/crc32fast-17a56bc0c01fa2cd/out" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/debug/build/crossbeam-utils-68e26dc13444de95/out" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/debug/build/erased-serde-d20d4dbaecd9cacd/out" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/debug/build/futures-core-7f2b4b084be53547/out" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/debug/build/indexmap-0578ec75796dde2e/out" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/debug/build/libc-3ce7f56c1890d3a8/out" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/debug/build/libm-1feca88c999f0c21/out" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/debug/build/log-89911656ebf4114c/out" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/debug/build/memchr-20ee9990687ea4f0/out" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/debug/build/minimp3-sys-0a7a46db5f51d5fe/out" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/debug/build/num-integer-375e7741919b2597/out" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/debug/build/num-iter-ab22cb436bce4153/out" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/debug/build/num-rational-8c250b222f31fef9/out" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/debug/build/num-traits-3c6c98085fff11ab/out" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/debug/build/proc-macro2-c056b7c0d60c6397/out" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/debug/build/ryu-b727181741a34c39/out" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/debug/build/serde-1cf6620603413404/out" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/debug/build/serde_derive-ff80287e9683fa34/out" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/debug/build/serde_json-a855d30c3263371e/out" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/debug/build/spirv-reflect-d1520d91b6c3e05a/out" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/debug/build/spirv_cross-cb366bcdaed784bf/out" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/debug/build/syn-eb3d3aa56d51a20a/out" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/debug/build/wgpu-core-30f7fdb970dd7aa8/out" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/debug/build/winapi-27bae84c9d6531f8/out" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/debug/build/winit-40ebd9f677af16dd/out" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/target" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

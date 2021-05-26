@@ -205,6 +205,14 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0d5f2f58f0aec3c50a20799792c3705e80dd7df327e79791cacec197e84e5e61"
 
 [[package]]
+name = "bevy_4x_camera"
+version = "0.1.2"
+source = "git+https://github.com/SarthakSingh31/bevy_4x_camera#6e74d6335105887dcc7cc0bc18d341606fdb0ad5"
+dependencies = [
+ "bevy",
+]
+
+[[package]]
 name = "bevy_app"
 version = "0.5.0"
 source = "git+https://github.com/bevyengine/bevy.git?branch=main#052094757aee671c66190b63a640900f15ee300d"
@@ -306,6 +314,7 @@ name = "bevy_draped_lines"
 version = "0.1.0"
 dependencies = [
  "bevy",
+ "bevy_4x_camera",
  "bytemuck",
 ]
 

@@ -1,6 +1,7 @@
 mod draped_line;
 mod draped_lines_node;
-
+use bevy::{prelude::*, render::camera::PerspectiveProjection};
+use bevy_4x_camera::{CameraRigBundle, FourXCameraPlugin};
 use bevy::{
     asset::LoadState,
     log,
@@ -39,6 +40,7 @@ fn main() {
     let mut app = App::build();
 
     app.add_plugins(DefaultPlugins)
+        .add_plugin(FourXCameraPlugin)
         // Adds the state
         .add_state(AppState::Setup)
         // and the state-dependent systems
@@ -226,9 +228,21 @@ fn setup(
     });
 
     // camera
-    let transform = Transform::from_xyz(0.0, 300.0, 0.0).looking_at(Vec3::ZERO, Vec3::Z);
-    commands.spawn_bundle(PerspectiveCameraBundle {
-        transform,
-        ..Default::default()
-    });
+    let transform = Transform::from_xyz(0.0, 300., 0.0).looking_at(Vec3::ZERO, Vec3::Z);
+    commands
+        // camera
+        .spawn_bundle(CameraRigBundle::default())
+        .with_children(|cb| {
+            cb.spawn_bundle(PerspectiveCameraBundle {
+                // I recommend setting the fov to a low value to get a
+                // a pseudo-orthographic perspective
+                perspective_projection: PerspectiveProjection {
+                    far: 10000.0,
+                    fov: 0.1,
+                    ..Default::default()
+                },
+                transform,
+                ..Default::default()
+            });
+        });
 }
