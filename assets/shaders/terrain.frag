@@ -387,7 +387,9 @@ void main() {
 
         vec3 plane_norm = normalize(cross(segment_p1 - segment_p0, plane_dir));
         float new_distance_from_plane = abs(dot(v_WorldPosition, plane_norm) - dot(segment_p0, plane_norm));
-        if (new_distance_from_plane < distance_from_plane) {
+        // only drape onto the 'top' surface, not the bottom
+        bool is_top_surface = sign(dot(v_WorldNormal, plane_dir)) < 0;
+        if (is_top_surface && new_distance_from_plane < distance_from_plane) {
             distance_from_plane = new_distance_from_plane;
             closest = i;
         }
